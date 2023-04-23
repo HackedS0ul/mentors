@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body class="account-page">
+
+    <div class="main-wrapper">
+    
+    <div class="bg-pattern-style">
+    <div class="content">
+    
+    <div class="account-content">
+    <div class="account-box">
+    <div class="login-right">
+    <div class="login-header">
+    <h3>Prisijunkite prie <span>Mentorius</span></h3>
+    <p class="text-muted">Prieiga prie valdymo skydo</p>
+    </div>
+    <form action="index.html">
+    <div class="form-group">
+    <label class="form-control-label">Elektroninis paštas</label>
+    <input type="email" class="form-control">
+    </div>
+    <div class="form-group">
+    <label class="form-control-label">Slaptažodis</label>
+    <div class="pass-group">
+    <input type="password" class="form-control pass-input">
+    <span class="fas fa-eye toggle-password"></span>
+    </div>
+    </div>
+    <div class="text-end">
+    <a class="forgot-link" href="forgot-password.html">Pamiršote slaptažodį?</a>
+    </div>
+    <button class="btn btn-primary login-btn" type="submit">Prisijunkti</button>
+    <div class="text-center dont-have">Dar neturite paskyros? <a href="register.html">Registruokis</a></div>
+    </form>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    </div>
+{% endblock%}

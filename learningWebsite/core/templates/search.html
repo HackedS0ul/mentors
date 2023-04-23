@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% include 'header.html' %}
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+    <div class="row align-items-center">
+    <div class="col-md-8 col-12">
+    <nav aria-label="breadcrumb" class="page-breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+    </nav>
+    <h2 class="breadcrumb-title">2245 matches found for : Mentors In Florida</h2>
+    </div>
+    <div class="col-md-4 col-12 d-md-block d-none">
+    <div class="sort-by">
+    <span class="sort-title">Sort by</span>
+    <span class="sortby-fliter">
+    <select class="select">
+    <option>Select</option>
+    <option class="sorting">Rating</option>
+    <option class="sorting">Popular</option>
+    <option class="sorting">Latest</option>
+    <option class="sorting">Free</option>
+    </select>
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    {% if user.is_authenticated  %}
+    <div class="content">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+    
+    <div class="card search-filter">
+    <div class="card-header">
+    <h4 class="card-title mb-0">Paieškos filtras</h4>
+    </div>
+    <div class="card-body">
+    <div class="filter-widget">
+    <div class="cal-icon">
+    <input type="text" class="form-control datetimepicker" placeholder="Select Date">
+    </div>
+    </div>
+    {% for value, label in form.gender.choices %}
+    <div class="filter-widget">
+    <h4>Gender</h4>
+    <div>
+       
+    <label class="custom_check">
+    <input type="checkbox" name="gender" value={{value}}>
+    <span class="checkmark"></span> Male
+    </label>
+    </div>
+
+    <div>
+    <label class="custom_check">
+    <input type="checkbox" name="gender" value={{value}}>
+    <span class="checkmark"></span> Female
+    </label>
+    </div>
+    </div>
+    {% endfor %}
+
+
+    <form method="GET">
+    <div class="filter-widget">
+    <h4>Pasirinkite tema</h4>
+
+    {% for course in form.courses %}
+    <div>
+       
+    <label class="custom_check">
+       
+        {{ course.tag }} {{ course.choice_label }}
+        
+    <span class="checkmark"></span>
+    </label>
+  
+    </div>
+    {% endfor %}
+    </form>
+   
+    </div>
+    
+    <div class="btn-search">
+    <button type="submit" class="btn btn-block w-100">Ieškoti</button>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+
+
+
+    <div class="col-md-12 col-lg-8 col-xl-9">
+    
+    
+    <div class="card">
+    <div class="card-body">
+    <div class="mentor-widget">
+    <div class="user-info-left">
+    <div class="mentor-img">
+    <a href="profile.html">
+    <img src="{{user.picture.url}}" class="img-fluid" alt="User Image">
+    </a>
+    </div>
+    <div class="user-info-cont">
+    <h4 class="usr-name"><a href="profile.html">{{user.username}}</a></h4>
+    <p class="mentor-type">{{user.mentor_path}}</p>
+    <div class="rating">
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star"></i>
+    <span class="d-inline-block average-rating">({{user.ratings}})</span>
+    </div>
+    <div class="mentor-details">
+    <p class="user-location"><i class="fas fa-map-marker-alt"></i> {{user.address}}</p>
+    </div>
+    </div>
+    </div>
+    <div class="user-info-right">
+    <div class="user-infos">
+    <ul>
+    <li><i class="far fa-comment"></i> 52 Feedback</li>
+    <li><i class="fas fa-map-marker-alt"></i> {{user.address}}</li>
+    <li><i class="far fa-money-bill-alt"></i> &euro;{{user.hour_rate}} <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i></li>
+    </ul>
+    </div>
+    <div class="mentor-booking">
+    <a class="apt-btn" href="booking.html">Siųsti užklausą </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="load-more text-center">
+    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+    <h4> <center>Prašome prisijungti prie savo paskyros!</center></h4>
+    <a href="login"
+        </div>
+    </div>
+    {% endif %}
+    {% include 'footer.html' %}
+    
+{% endblock content %}
